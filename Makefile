@@ -22,4 +22,4 @@ build: clean
 	${LATEX} ${PRO_NAME}
 
 clean:
-	@./clean.sh
+	@orb ./clean.sh

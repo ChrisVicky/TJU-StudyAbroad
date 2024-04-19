@@ -1,26 +1,27 @@
 #!/bin/bash
-### 
+###
 # @file clean.sh
-# @brief 
+# @brief
 # 	- Use Bash under Unix OS
 # 	- Remove LaTeX Build Files
-# 	- Use `posix-egrep' Standard regex 
+# 	- Use `posix-egrep' Standard regex
 # @author Christopher Liu
 # @version 1.0
 # @date 2023-01-06
 #/
 echo "- Start Cleaning Build Files"
-files=`find . \
-	-regextype 'posix-egrep' \
-	-regex ".*\.(aux|log|out|thm|toc|bbl|blg|fdb_latexmk|fls|gz|vrb|nav|snm)"`
+# files=`find . \
+# 	-regextype 'posix-egrep' \
+# 	-regex ".*\.(aux|log|out|thm|toc|bbl|blg|fdb_latexmk|fls|gz|vrb|nav|snm)"`
 
-[[ "$files" == "" ]] \
-&& echo "- Build Files NOT Found" \
-&& exit
+files=$(find . -regextype 'posix-egrep' -regex ".*\.(aux|log|out|thm|toc|bbl|blg|fdb_latexmk|fls|gz|vrb|nav|snm)")
 
-for i in ${files} 
-do 
+[[ "$files" == "" ]] &&
+	echo "- Build Files NOT Found" &&
+	exit
+
+for i in ${files}; do
 	rm $i
 	echo "    - Found and Remove $i"
-done 
+done
 echo "- Cleaning Build Files End"
